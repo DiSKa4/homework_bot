@@ -85,7 +85,7 @@ def check_response(response):
         logger.error(error_msg)
         raise exceptions.ApiResponse(error_msg)
     if not isinstance(homework, list):
-        error_message = 'Домашка выводятся не списком'
+        error_message = ('Домашка выводятся не списком')
         logger.error(error_message)
         raise exceptions.ApiResponse(error_message)
     return homework
@@ -148,7 +148,6 @@ def main():
             message = f'Сбой в работе программы: {error}'
             logger.error(message)
             send_message(bot, message)
-            logger.critical(message)
             time.sleep(RETRY_TIME)
 
 
