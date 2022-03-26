@@ -38,27 +38,32 @@ logger.addHandler(
 
 
 class EmptyDictionary(Exception):
-    """Пустой словарь"""
+    """Пустой словарь."""
+
     pass
 
 
 class StatusErrors(Exception):
-    """Нет статуса"""
+    """Нет статуса."""
+
     pass
 
 
 class AnswerNot200(Exception):
-    """Ответ сервера не равен 200"""
+    """Ответ сервера не равен 200."""
+
     pass
 
 
 class Emptyvalue(Exception):
-    """Пустое значение"""
+    """Пустое значение."""
+
     pass
 
 
 def send_message(bot, message):
-    """Отправка сообщения"""
+    """Отправка сообщения."""
+
     bot.send_message(TELEGRAM_CHAT_ID, message)
     logger.info(
         f'Сообщение в Telegram отправлено: {message}')
@@ -66,6 +71,7 @@ def send_message(bot, message):
 
 def get_api_answer(current_timestamp):
     """Получение данных ответа API."""
+
     timestamp = current_timestamp or int(time.time())
     params = {'from_date': timestamp}
     response = requests.get(ENDPOINT, params=params, headers=HEADERS)
@@ -77,6 +83,7 @@ def get_api_answer(current_timestamp):
 
 def check_response(response):
     """Проверяем данные в response."""
+
     if response['homeworks'] is None:
         logger.error('Ошибка homeworks')
         raise EmptyDictionary
@@ -88,6 +95,7 @@ def check_response(response):
 
 def parse_status(homework):
     """Анализируем изменения статуса."""
+
     homework_name = homework['homework_name']
     homework_status = homework['status']
     if homework_status is None:
@@ -104,6 +112,7 @@ def parse_status(homework):
 
 def check_tokens():
     """Проверяем токены."""
+
     tokens_msg = (
         'Отсутствует обязательная переменная окружения:')
     token_response = True
@@ -121,6 +130,7 @@ def check_tokens():
 
 def main():
     """Основная логика работы бота."""
+
     if not check_tokens():
         return False
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
