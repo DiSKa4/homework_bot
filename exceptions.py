@@ -22,13 +22,13 @@ class SendMessage(Exception):
     pass
 
 
-class StatusMissing(Exception):
-    """Исключение для проверки статуса"""
+class ApiResponse(Exception):
+    """Проверка API"""
 
     pass
 
 
-class ApiResponse(Exception):
-    """Проверка API"""
+class ResponseTypeException(Exception):
+    """Ошибка типа ответа"""
 
     pass
