@@ -83,7 +83,7 @@ def check_response(response):
     except IndexError:
         error_msg = ('Список домашних работ пуст')
         logger.error(error_msg)
-        raise IndexError(error_msg)
+        raise IndexError
     return homework
 
 
@@ -147,7 +147,6 @@ def main():
         except Exception as error:
             message = (f'Сбой в работе программы: {error}')
             logger.error(message)
-            send_message(bot, message)
         time.sleep(RETRY_TIME)
 
 
